@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1、gulp</title>
+    <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+<p>gulpfile.js</p>
+<pre>
+const gulp = require('gulp');
+const minifyCss = require('gulp-minify-css');
+const babel = require('gulp-babel');
+const minifyJs = require('gulp-uglify');
+
+// 压缩css
+gulp.task('minifyCss', () => {
+    return gulp.src('src/css/*').pipe(minifyCss()).pipe(gulp.dest('dist/css'));
+})
+
+// 将js转为es5版本，并压缩js
+gulp.task('minifyJs', () => {
+    return gulp.src('src/js/index.js').pipe(babel({ presets: ['@babel/env'] })).pipe(minifyJs()).pipe(gulp.dest('dist/js'));
+})
+
+// 将index.html复制到dist
+gulp.task('copy', () => {
+    return gulp.src(['src/index.html', 'src/**/*.min.js']).pipe(gulp.dest('dist/'));
+})
+
+// 默认输出
+gulp.task('default', gulp.series('minifyCss', 'minifyJs', 'copy'))
+</pre>
+<p>package.json</p>
+<pre>
+"@babel/core": "^7.9.6",
+"@babel/preset-env": "^7.9.6",
+"babel-preset-env": "1.7.0",
+"gulp": "^4.0.2",
+"gulp-babel": "^8.0.0",
+"gulp-minify-css": "^1.2.4",
+"gulp-uglify": "^3.0.2"
+</pre>
+</body>
+</html>
