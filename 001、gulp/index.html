@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>1、gulp</title>
+    <title>001 gulp</title>
     <link rel="stylesheet" href="../index.css">
 </head>
 <body>
 <p>gulpfile.js</p>
 <pre>
+<code>
 const gulp = require('gulp');
 const minifyCss = require('gulp-minify-css');
 const babel = require('gulp-babel');
@@ -30,9 +31,11 @@ gulp.task('copy', () => {
 
 // 默认输出
 gulp.task('default', gulp.series('minifyCss', 'minifyJs', 'copy'))
+</code>
 </pre>
 <p>package.json</p>
 <pre>
+<code>
 "@babel/core": "^7.9.6",
 "@babel/preset-env": "^7.9.6",
 "babel-preset-env": "1.7.0",
@@ -40,6 +43,7 @@ gulp.task('default', gulp.series('minifyCss', 'minifyJs', 'copy'))
 "gulp-babel": "^8.0.0",
 "gulp-minify-css": "^1.2.4",
 "gulp-uglify": "^3.0.2"
+</code>
 </pre>
 </body>
 </html>

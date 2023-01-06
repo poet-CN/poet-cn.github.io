@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>002 前端下载文件相关</title>
+    <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+<div>
+    <div>
+        <div>
+            <p>1. 谷歌浏览器点击下载直接闪一下，没有进行下载操作。 --->
+                检查链接是否为http，谷歌阻止了http链接的下载功能。</p>
+        </div>
+        <div>
+            <p>2. 前端下载，自定义下载文件名。</p>
+            <pre>
+        <code>
+export const getBlob = (url) => {
+return new Promise(resolve => {
+const xhr = new XMLHttpRequest()
+
+xhr.open('GET', url, true)
+xhr.responseType = 'blob'
+xhr.onload = () => {
+if (xhr.status === 200) {
+resolve(xhr.response)
+}
+}
+
+xhr.send()
+})
+}
+
+export const saveAs = (blob, filename) => {
+var link = document.createElement('a')
+link.href = window.URL.createObjectURL(blob)
+link.download = filename
+link.click()
+}
+调用：
+getBlob(attachment.url).then(
+(blob) => {
+saveAs(
+blob,
+attachment.name,
+)
+},
+)
+      </code>
+      </pre>
+        </div>
+    </div>
+</div>
+</body>
+</html>

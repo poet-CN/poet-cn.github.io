@@ -13,5 +13,15 @@ p {
 
 pre {
     width: fit-content;
+    padding: 0 24px;
     border: 1px solid #cccccc;
+}
+
+code {
+    white-space: pre-wrap;
+}
+
+ul {
+    padding-left: 24px;
+    list-style: decimal-leading-zero;
 }
